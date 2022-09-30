@@ -25,7 +25,7 @@ const TenantA = () => {
     React.useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/stats/totalrentb');
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalrentb');
         res.data.sort(compare)
         setDate(  res.data)
           
@@ -47,10 +47,11 @@ const TenantA = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/projects/singleab')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/projects/singleab')
           res.data.sort(compare)
-          setAdmin(  res.data)
-          console.log('admin',admin[0].name);
+          const result = res.data.filter((_, index) => index < 6);
+          setAdmin(  result)
+          console.log('admin',admin);
          } catch (error) {
           console.log(error);
           
@@ -102,6 +103,9 @@ const TenantA = () => {
    {admin.map((items)=>{
      return(
        <div className='rent-card'>
+        {/* {admin.length<=6?(
+          
+        )} */}
        <h3 className='month'>month of {moment().format('MM YYYY ')}</h3>
 
              {/* <p>Name: {items.name}</p>
@@ -110,11 +114,11 @@ const TenantA = () => {
              <p> HouseNo: {items.houseNo}</p>
              <p>IdNo: {items.idNo}</p>
              <p>WaterFee: {items.waterFee}</p>  */}
-             <p className='rentss'> <p className='spaces'> Name:   </p> <p className='spaces'>      {items.name}</p> </p>
+             <p className='rentss'> <p > Name:   </p> <p className='spaces'>      {items.name}</p> </p>
              <p className='rentss'> <p>RentPaid: </p>   <p>{items.amount}</p> </p>
              <p className='rentss'> <p>HouseNo:</p>  <p>{ ('') }{items.houseNo}</p> </p>
              <p className='rentss'> <p>Water Bill:</p> <p>{items.waterFee}</p> </p>  
-             <p className='rentss'> <p>Wi fii:</p> <p>{items.wifi}</p> </p>  
+             <p className='rentss'> <p>Wifi:</p> <p>{items.wifi}</p> </p>  
            
              {/* <p className='rentss'> <p>IdNo:</p>  <p>{items.idNo}</p></p> */}
              {/* <p className='rentss'> <p>Fisrt Water Read:</p> <p>{items.currentRead}</p> </p> 
@@ -125,9 +129,7 @@ const TenantA = () => {
              <p className='rentss'> <p>Arrears:</p> <p>{items.arrears}</p> </p> 
              <p className='rentss'> <p>Penalties:</p> <p>{items.penalties}</p> </p> 
              {/* <p className='rentss'> <p>Total Balance:</p> <img className='img' src={items.balance} alt="" /> </p>  */}
-             <p className='rentss'> <p>Total Balnces:</p> <p>{items.balance+items.penalties+items.arrears}</p> </p> 
-             <p className='rentss'> <p>Undepayment:</p>  <p>{items.idNo}</p></p>
-             <p className='rentss'> <p>overpayment:</p>  <p>{items.idNo}</p></p>
+             <p className='rentss'> <p>Total Balnces:</p> <p>{items.balance}</p> </p> 
 
              <button onClick={doc} className="btn" id='btnreceipt' >
      Get Receipt

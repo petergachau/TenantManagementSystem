@@ -18,9 +18,10 @@ const AdminTotalRent = () => {
 useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/vacations')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/vacation')
       res.data.sort(compare)
-      setTours(  res.data)
+      const result = res.data.filter((_, index) => index < 6);
+      setTours(  result)
       console.log('hey',tours);
      } catch (error) {
       console.log(error);
@@ -38,7 +39,7 @@ useEffect(()=>{
         event.preventDefault()
         let key =event.target.value
         if(key){
-         let result= await fetch(`http://localhost:5000/project/search${key}`)
+         let result= await fetch(`https://railway-production-8f49.up.railway.app/stats/search${key}`)
       result=await result.json()
       if(result){
         setTours(result)
@@ -54,7 +55,7 @@ useEffect(()=>{
 
   return (
     <>
-    <h4 className='r'>Vacations</h4>
+    <h4 className='r'>Notices to vacate</h4>
     <div className='search'>      
       <input type="text" placeholder='Search by house number' onChange={handleSearch} />
 </div>        
@@ -67,10 +68,10 @@ useEffect(()=>{
               <h4>{format(item.createdAt)}</h4> 
 
               <p>Name: {item.name}</p>
-             <p> Aparment: {item.apartment}</p> 
              <p> HouseNo: {item.houseNo}</p> 
-             <p> Reason: {item.reason}</p> 
-             <p> Vaction Date: {item.remTime}</p> 
+             <p> Vacation notice/contract renewal : {item.contractRenewal}</p> 
+             <p>Renarks: { item.remarks}</p>
+             <p> Vaction date: {item.remTime}</p> 
              <div className="buttons">
               {/* <button className="btn">delete</button>
               <button className="btn">view</button> */}

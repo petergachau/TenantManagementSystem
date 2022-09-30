@@ -25,10 +25,10 @@ const TenantA = () => {
     React.useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/stats/totalrentb');
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalrentb');
         res.data.sort(compare)
-        setDate(  res.data)
-          
+        const result = res.data.filter((_, index) => index < 6);
+          setAdmin(  result)
         
        
        } catch (error) {
@@ -47,7 +47,7 @@ const TenantA = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/1b')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/1b')
           res.data.sort(compare)
           setAdmin(  res.data)
           console.log('admin',admin[0].name);

@@ -22,7 +22,7 @@ function compare(a,b){
         async function fetchData(){
         try {
     
-          const res= await axios.get('http://localhost:5000/stats/charts', setHeaders())
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/charts', setHeaders())
           res.data.sort(compare)
           const data=res.data.map((item)=>{
            const months=[

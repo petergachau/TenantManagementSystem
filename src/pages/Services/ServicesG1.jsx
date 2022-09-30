@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {format} from 'timeago.js'
 import React, { useEffect, useState } from 'react'
+import moment from 'moment';
 
 
 const Responses = () => {
@@ -16,9 +17,13 @@ const Responses = () => {
   useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/start/services/g1')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/start/services/g1')
         res.data.sort(compare)
-        setAdmin(  res.data)
+        const result = res.data.filter((_, index) => index < 6);
+                  console.log('result',result);
+
+          
+        
         console.log(admin);
        } catch (error) {
         console.log(error);
@@ -29,11 +34,12 @@ const Responses = () => {
         },[])
   return (
     <>
-    <h4 className='headers'>Tenant Water Charges and Other Charges</h4>
+    <h4 className='headers'>Tenant Water  and Other Charges</h4>
     <div  className='rent-page'>
     {admin.map((items)=>{
       return(
         <div className='rent-card'>
+<h3 className='month'>month of {moment().format('MM YYYY ')}</h3>
 
               <p className='rentss'><p>Name: </p> <p>{items.name}</p> </p >
               

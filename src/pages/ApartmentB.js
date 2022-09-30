@@ -8,7 +8,7 @@ const ApartmentB = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/projects/singlebb')
+          const res= await axios.get('https://tenant-app-app.herokuapp.com/stats/projects/singlebb')
           setAdmin(  res.data)
           console.log(admin);
          } catch (error) {

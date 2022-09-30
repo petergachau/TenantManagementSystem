@@ -155,6 +155,7 @@ import Summary4C from "./pages/Summary/Summary4C";
 import Summary4D from "./pages/Summary/Summary4D";
 import Summary5B from "./pages/Summary/Summary5B";
 import Notifications from "./pages/Notifications";
+import AdminMessage from "./pages/AdminMesssage";
 function App() {
   
   const dispatch = useDispatch();
@@ -188,6 +189,7 @@ function App() {
               <Route path="admintenants" element={<AdminTenants/>} />
              <Route path="admintotalrent" element={<AdminTotalRent/>} />
              <Route path="admincaretaker" element={<AdminCaretaker/>} />
+             <Route path="adminmessange" element={<AdminMessage/>} />
              <Route index element={<AdminTenants/>} />
               </Route>
               <Route path="/rents" element={<StudentsProjects/>} />

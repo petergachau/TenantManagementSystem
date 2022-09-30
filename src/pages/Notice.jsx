@@ -75,7 +75,7 @@ useEffect(() => {
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/stats/users')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/users')
     setTours(  res.data)
     console.log('hey',tours[0].phone);
    } catch (error) {
@@ -99,25 +99,31 @@ return (
 
   <StyledForm id='cancelCourse' onSubmit={handleSubmit} style={{marginTop:'6rem'}} className='form'>
   
-  <h2 style={{color:'whitesmoke'}}>{id? 'update your values':'Water bill and Other Charges'}</h2>
+  <h2 style={{color:'whitesmoke'}}>{id? 'update your values':'Water Bill and Other Charges'}</h2>
     <div className="main-rent-create">
  
 {/* <Projects/> */}
 <div className="rent-split-start">
+<h6 style={{color:'white'}}>name</h6>
     {/* <input className='form-input' type='text'  placeholder='Apartment eg A or B or C' onChange={(e)=> setUser({...users , apartment:e.target.value})} required/> */}
     <input className='form-input' type='text'  placeholder='Name' onChange={(e)=> setUser({...users , name:e.target.value})} required/>
+    <h6 style={{color:'white'}}>house number</h6>
     <input className='form-input' type='text' placeholder='House Number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
-    
+    <h6 style={{color:'white'}}>any arrears</h6>
      <input className='form-input' type='text' placeholder='any arrears' onChange={(e)=> setUser({...users ,arrears:e.target.value})} />
+     <h6 style={{color:'white'}}>maintanance charges</h6>
     {/* <input className='form-input' type='text' placeholder='any penalties' onChange={(e)=> setUser({...users ,penalty:e.target.value})} /> */}
     <input className='form-input' type='text' placeholder='Maintanance Charges' onChange={(e)=> setUser({...users ,services:e.target.value})}/>
 
     </div>
     <div className="rent-split">
-
+    <h6 style={{color:'white'}}>previous water read</h6>
     <input className='form-input' type='text' placeholder=' previous water read' onChange={(e)=> setUser({...users ,prevReads:e.target.value})}/>
+    <h6 style={{color:'white'}}>current water read</h6>
      <input className='form-input' type='text' placeholder='current water read' onChange={(e)=> setUser({...users ,currentraed:e.target.value})} required/>
+     <h6 style={{color:'white'}}>units consumed</h6>
     <input className='form-input' type='text' placeholder='unit consumed' onChange={(e)=> setUser({...users ,units:e.target.value})} required/>
+    <h6 style={{color:'white'}}> water bill</h6>
     <input className='form-input' type='text' placeholder='water bill' onChange={(e)=> setUser({...users ,waters:e.target.value})} required/>
     
      {/* mpesa screenshot

@@ -15,6 +15,7 @@ import { googleSignIn, login } from "../redux/features/authSlice";
 import { GoogleLogin } from "react-google-login";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import All from "./All";
 const initialState = {
   email: "",
   password: "",
@@ -85,6 +86,7 @@ const Login = () => {
      
         <MDBIcon fas icon="user-circle" className="fa-2x" />
         <h5>Sign In</h5>
+        {/* <All/> */}
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">
             <div className="col-md-12">

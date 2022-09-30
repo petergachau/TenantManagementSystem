@@ -35,6 +35,7 @@ const StudentProjectCreate = () => {
    const handleSubmit= (e)=>{
     
        e.preventDefault()
+       e.target.reset();
        if (users){
         const updateddata={...users, name:user?.result.name}
        
@@ -131,8 +132,12 @@ return (
 <div className="main-rent-create">
   
 <div className="rent-split-start">
+<h6 style={{color:'white'}}>name</h6>
+
   {/* <input className='form-input' type='text'  placeholder='Apartment Name' onChange={(e)=> setUser({...users , apartment:e.target.value})} required/> */}
   <input className='form-input' type='text'  placeholder='Name' onChange={(e)=> setUser({...users , name:e.target.value})} required/>
+  <h6 style={{color:'white'}}>house number</h6>
+
   <input className='form-input' type='text' placeholder='House Number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
 
   <select name="" id="" onChange={(e)=> setUser({...users, contractRenewal:e.target.value})} >
@@ -145,8 +150,10 @@ return (
   {/* <input className='form-input' type='text' placeholder='Contract Renewal' onChange={(e)=> setUser({...users , contractRenewal:e.target.value})} /> */}
   </div>
   <div className="rent-split">
-   <h6 style={{color:'white'}}>date of vacation</h6> 
+   <h6 style={{color:'white'}}>date when applicable</h6> 
   <input className='form-input' type='date' placeholder='date' onChange={(e)=> setUser({...users ,remTime:e.target.value})} required/>
+  <h6 style={{color:'white'}}>Remarks</h6> 
+
   <input className='form-input' type='text' placeholder='Remarks' onChange={(e)=> setUser({...users ,reason:e.target.value})}/>
   <p style={{color:'white'}}>If you want to renew the contract refer to the contract agreement instructions</p>
 </div>

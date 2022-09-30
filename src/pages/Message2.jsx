@@ -51,7 +51,7 @@ const Message = () => {
     useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/stats/chartss')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/chartss')
         setTours(  res.data)
         console.log('hey',tours[1].houseNo);
        } catch (error) {

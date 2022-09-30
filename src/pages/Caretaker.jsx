@@ -34,6 +34,7 @@ const [mile,setMilestone]=useState({
     phoneNo:'',
     apartment:'',
 cost:'',
+item:'',
     createdAt:Date
 
 })
@@ -52,16 +53,16 @@ const handleSubmit= (e)=>{
   return (
    
       <StyledForm style={{marginTop:'8rem'}} onSubmit={handleSubmit}>
-    <h3 style={{color:'whitesmoke'}}> maintenance </h3>
+    <h3 style={{color:'whitesmoke'}}> Maintenance </h3>
     <div className="main-rent-create">
     <div className="rent-split-start">
 
 
 
     <select name="" id="" onChange={(e)=> setMilestone({...mile, general:e.target.value})}>
-        <option value="Locality of Repair/ maintenance">Locality of Repair/ maintenance</option>
+        <option value="Locality of Repair/ maintenance">Locality of repair/ maintenance</option>
         <option value="General">General</option>
-        <option value="specific house">specific house</option>
+        <option value="specific house">Specific house</option>
        
       </select>
 
@@ -70,14 +71,15 @@ const handleSubmit= (e)=>{
 
       
       
-      
+         <h6 style={{color:'white'}}>Description of issue/fault</h6>
 <input className='form-input' type='text'  placeholder='Description of issue/fault' onChange={(e)=> setMilestone({...mile , maintance:e.target.value})} />
+<h6 style={{color:'white'}}>Repair estimates/quotations</h6>
 
-      <input className='form-input' type='number'  placeholder=' Repair Estimates/Quotations' onChange={(e)=> setMilestone({...mile , cost:e.target.value})} />
+      <input className='form-input' type='number'  placeholder=' Repair estimates/quotations' onChange={(e)=> setMilestone({...mile , item:e.target.value})} />
       {/* <input className='form-input' type='text'  placeholder='Name of the Item' onChange={(e)=> setMilestone({...mile , item:e.target.value})} /> */}
-       
+
       <select name="" id="" onChange={(e)=> setMilestone({...mile, quantity:e.target.value})} >
-  <option value="work completed"> work copmleted</option>
+  <option value="Work completed"> Work copmleted</option>
   <option value="yes">yes</option>
   <option value="no">no</option>
 </select>
@@ -85,12 +87,18 @@ const handleSubmit= (e)=>{
        </div>
        
        <div className="rent-split">
-       <input className='form-input' type='number'  placeholder='Labour Charges' onChange={(e)=> setMilestone({...mile , price:e.target.value})} />
+       <h6 style={{color:'white'}}>Labour charges</h6>
+
+       <input className='form-input' type='number'  placeholder='Labour charges' onChange={(e)=> setMilestone({...mile , price:e.target.value})} />
+       <h6 style={{color:'white'}}>House number</h6>
 
        <input className='form-input' type='text'  placeholder='House number' onChange={(e)=> setMilestone({...mile , apartment:e.target.value})} /> 
-      <input className='form-input' type='text'  placeholder='Remarks' onChange={(e)=> setMilestone({...mile , servedBy:e.target.value})} /> 
+       <h6 style={{color:'white'}}>Remarks</h6>
 
-      <input className='form-input' type='number'  placeholder='Phone Number of the Repair Person' onChange={(e)=> setMilestone({...mile , phoneNo:e.target.value})} />
+      <input className='form-input' type='text'  placeholder='Remarks' onChange={(e)=> setMilestone({...mile , servedBy:e.target.value})} /> 
+      <h6 style={{color:'white'}}>Phone number of the repair person</h6>
+
+      <input className='form-input' type='number'  placeholder='Phone number of the repair person' onChange={(e)=> setMilestone({...mile , phoneNo:e.target.value})} />
       
       </div>
 </div>

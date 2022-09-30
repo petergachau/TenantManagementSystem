@@ -45,7 +45,7 @@ dispatch(getProjectsByUser(userId))
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/project')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/project')
     setCareTaker(  res.data)
    } catch (error) {
     console.log(error);
@@ -68,7 +68,7 @@ if(user?.result?.isAdmin){
             <StyledDashboard>
       <SideNav>
         <Link to='/'>
-          <h3 style={{color:'whitesmoke'}}>Quick Links</h3>
+          <h3 style={{color:'whitesmoke'}}>Home</h3>
         </Link>
         
         <NavLink
@@ -93,7 +93,7 @@ if(user?.result?.isAdmin){
           }
           to="/main/admin"
         >
-       <p style={{color:'black'}}>Summary</p> 
+       <p style={{color:'black'}}>Payment History</p> 
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -110,6 +110,14 @@ if(user?.result?.isAdmin){
           to="/main/admintotalrent"
         >
           <p style={{color:'black'}}>Notices To Vacate</p> 
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
+          to="/main/adminmessange"
+        >
+          <p style={{color:'black'}}>Message to Caretaker</p> 
         </NavLink>
       </SideNav>
       <Content>

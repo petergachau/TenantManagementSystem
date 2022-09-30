@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://railway-production-8f49.up.railway.app',
 });
 
 API.interceptors.request.use((req) => {
@@ -24,6 +24,7 @@ export const deleteMilestone = (id) => API.delete(`/milestone/${id}`);
 export const deleteVacation = (id) => API.delete(`/vacation/${id}`);
 export const deleteComplain = (id) => API.delete(`/complain/${id}`);
 
+export const createMessage = (formData) => API.post("/message", formData);
 
 export const createcaretakernotice = (formData) => API.post("/caretakercomplain", formData);
 // export const getTenants = () => API.get("/tenant");

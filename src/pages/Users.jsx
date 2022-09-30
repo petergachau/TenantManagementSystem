@@ -25,10 +25,10 @@ const Users = () => {
   useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/usercrud/allusers')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/usercrud/allusers')
         res.data.sort(compare)
         setAdmin(  res.data)
-        console.log(admin);
+        console.log('admin',admin);
        } catch (error) {
         console.log(error);
         

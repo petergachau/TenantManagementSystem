@@ -16,9 +16,11 @@ const Responses = () => {
   useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/start/services/4b')
-        res.data.sort(compare)
-        setAdmin(  res.data)
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/start/services/4b')
+        const result = res.data.filter((_, index) => index < 6);
+                 
+
+          setAdmin(  result)
         console.log(admin);
        } catch (error) {
         console.log(error);
@@ -29,7 +31,7 @@ const Responses = () => {
         },[])
   return (
     <>
-    <h4 className='headers'>Tenant Water Charges and Other Charges</h4>
+    <h4 className='headers'>Tenant Water  and Other Charges</h4>
     <div  className='rent-page'>
     {admin.map((items)=>{
       return(

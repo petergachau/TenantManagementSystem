@@ -11,7 +11,7 @@ const[index,setIndex]=useState(0)
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/allpayments')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/allpayments')
           setUsers(  res.data)
          } catch (error) {
           console.log(error);

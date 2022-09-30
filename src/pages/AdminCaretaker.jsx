@@ -25,9 +25,10 @@ function compare(a,b){
 useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/caretaker')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/caretaker')
       res.data.sort(compare)
-      setTours(  res.data)
+      const result = res.data.filter((_, index) => index < 6);
+          setTours(  result)
       console.log('hey',tours);
      } catch (error) {
       console.log(error);
@@ -50,7 +51,7 @@ useEffect(()=>{
         event.preventDefault()
         let key =event.target.value
         if(key){
-         let result= await fetch(`http://localhost:5000/project/search${key}`)
+         let result= await fetch(`https://railway-production-8f49.up.railway.app/stats/searchs${key}`)
       result=await result.json()
       if(result){
         setTours(result)
@@ -68,9 +69,7 @@ useEffect(()=>{
   return (
     <>
     <h4 className='r'>Maintanance</h4>
-    <div className='search'>      
-      <input type="text" placeholder='Search by Apartment' onChange={handleSearch} />
-</div>
+  
         
     
     <div className='tenant-admin-page'>
@@ -81,14 +80,16 @@ useEffect(()=>{
             <div className='datas'>
                 <div></div>
                 <h4>{format(item.createdAt)}</h4> 
+                <p className='rentss'><p>Locality of Repair/maintanance:</p> <p>{item.general}</p>  </p>
 
-              <p>Locality of Repair/maintanance: {item.general}</p>
-             <p> Description of issue: {item.maintance} {}</p> 
-             <p>Repair estimates /Quotations: {item.cost}</p>
-             <p>Labour charges: {item.price}</p>
-             <p>Work Completion: {item.quantity}</p>
-             <p>Remarks: {item.apartment}</p>
-             <p>Phone no of Repair Person: {item.phoneNo}</p>
+              
+             <p className='rentss'> <p>Description of issue: </p> {item.maintance} {}</p> 
+             <p className='rentss'> <p>Repair estimates /Quotations:</p>  {item.item}</p>
+             <p className='rentss'> <p>Labour charges:</p>  {item.price}</p>
+             <p className='rentss'> <p>Work completion:</p>  {item.quantity}</p>
+             <p className='rentss'><p>House number:</p>  {item.apartment}</p>
+             <p className='rentss'> <p>Remarks:</p>  {item.servedBy}</p>
+             <p className='rentss'><p>Phone no of repair person:</p>  {item.phoneNo}</p>
              {/* <p> Amount: {item.amount}</p> 
              <p> HouseNo:{item.houseNo}</p> 
              <p> House: {item.aptType}</p>  */}

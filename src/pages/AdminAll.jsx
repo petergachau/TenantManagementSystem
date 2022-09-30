@@ -67,7 +67,7 @@ const [users,setUsers]=useState([]);
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get(`http://localhost:5000/stats/rent`)
+          const res= await axios.get(`https://railway-production-8f49.up.railway.app/stats/rent`)
           
         res.data.sort(compare)
         setTours(  res.data)
@@ -86,7 +86,7 @@ const [users,setUsers]=useState([]);
             event.preventDefault()
             let key =event.target.value
             if(key){
-             let result= await fetch(`http://localhost:5000/project/search${key}`)
+             let result= await fetch(`https://railway-production-8f49.up.railway.app/project/search${key}`)
           result=await result.json()
           if(result){
             setTours(result)
@@ -107,7 +107,7 @@ const [users,setUsers]=useState([]);
     
             
            
-      <h4 style={{color:'whitesmoke'}}>Rent progress</h4>
+      <h4 style={{color:'whitesmoke'}}>Payment History</h4>
       <div className='search'>      
       <input type="text" placeholder='Search by house number' onChange={handleSearch} />
 </div> 
@@ -143,23 +143,25 @@ const [users,setUsers]=useState([]);
 <p>IdNo: {items.idNo}</p>
 <p>WaterFee: {items.waterFee}</p>  */}
 <p className='rentss'> <p> Name:   </p> <p>{items.name}</p> </p>
-<p className='rentss'> <p>RentPaid: </p>   <p>{items.amount}</p> </p>
 <p className='rentss'> <p>HouseNo:</p>  <p>{ ('') }{items.houseNo}</p> </p>
-<p className='rentss'> <p>Deposit:</p> <p>{items.payment}</p> </p>
-<p className='rentss'> <p>Contract Renewal:</p>  <p>{items.aptType}</p></p>
-<p className='rentss'> <p>Fisrt Water Read:</p> <p>{items.currentRead}</p> </p> 
-<p className='rentss'> <p>Last Water Read:</p> <p>{items.lastRead}</p> </p> 
-<p className='rentss'> <p>Water bill:</p> <p>{items.waterFee}</p> </p> 
 
-<p className='rentss'> <p>Method of payment:</p> <p>{items.payment}</p> </p> 
-<p className='rentss'> <p>Date of Payment:</p> <p>{items.datePaid}</p> </p> 
-<p className='rentss'> <p>Type of the rental:</p> <p>{items.aptType}</p> </p> 
+<p className='rentss'> <p>RentPaid: </p>   <p>{items.amount}</p> </p>
+<p className='rentss'> <p>Previous Water Read:</p> <p>{items.currentRead}</p> </p> 
+<p className='rentss'> <p>Current Water Read:</p> <p>{items.lastRead}</p> </p> 
+<p className='rentss'> <p>units consumed:</p> <p>{items.payment}</p> </p> 
+
+<p className='rentss'> <p>Water bill:</p> <p>{items.waterFee}</p> </p> 
+<p className='rentss'> <p>Maintanance:</p> <p>{items.payment}</p> </p>
+<p className='rentss'> <p>Contract Renewal:</p>  <p>{items.aptType}</p></p>
+
+<p className='rentss'> <p>Maintance charges:</p> <p>{items.aptType}</p> </p> 
 <p className='rentss'> <p>Wifi Fee:</p> <p>{items.wifi}</p> </p> 
 <p className='rentss'> <p>Arrears:</p> <p>{items.arrears}</p> </p> 
 <p className='rentss'> <p>Phone Number:</p> <p>{items.phone}</p> </p> 
 <p className='rentss'> <p>Penalties:</p> <p>{items.penalties}</p> </p> 
 <p className='rentss'> <p>Total Balances:</p> <p>{items.balance
 }</p> </p> 
+<p className='rentss'> <p>Date of Payment:</p> <p>{items.datePaid}</p> </p> 
 
 <div className="buttons">
 <button className="btn "onClick={() => handleDelete(items._id)}

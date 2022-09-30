@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 
 
@@ -17,9 +18,12 @@ const Summary1A
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/status/3b')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/status/3b')
           res.data.sort(compare)
-          setAdmin(  res.data)
+          const result = res.data.filter((_, index) => index < 6);
+                  console.log('result',result);
+
+          setAdmin(  result)
          
          } catch (error) {
           console.log(error);
@@ -31,22 +35,25 @@ const Summary1A
 
   return (
     <>
-    <h4 className='headers'>Total Payments</h4>
+    <h4 className='headers'>Total Monthly Payments</h4>
+    
     <div  className='rent-page'>
     {admin.map((items)=>{
       return(
         <div className='rent-card'>
+<h3 className='month'>month of {moment().format('MM YYYY ')}</h3>
+              <p className='rentss'> <p> Name:</p> <p>{items.name}</p> </p>
+              <p className='rentss'> <p>House Number:</p> <p>{items.houseNo}</p> </p>
+              <p className='rentss'> <p>Monthly Rent:</p>  <p>{items.rent}</p></p>
+              <p className='rentss'> <p>Monthly Water Charges:</p>  <p>{items.water}</p></p>
 
-              <p className='rentss'> <p> Name:   </p> <p>{items.name}</p> </p>
-              <p className='rentss'> <p>HouseNo:</p> <p>{items.houseNo}</p> </p>
-              <p className='rentss'> <p>monthly Rent:</p>  <p>{items.rent}</p></p>
-              <p className='rentss'> <p>monthly water charges:</p>  <p>{items.water}</p></p>
-
-              <p className='rentss'> <p>penalties: </p>   <p>{items.penalties}</p> </p>
+              <p className='rentss'> <p>Penalties: </p>   <p>{items.penalties}</p> </p>
               <p className='rentss'> <p>Arrears: </p>   <p>{items.arrears}</p> </p>
 
               <p className='rentss'> <p>Remarks:</p> <p>{items.remarks}</p> </p> 
-              <p className='rentss'> <p>Total monthly Payments:</p> <p>{items.rent+items.water+items.arrears+items.wifi+items.penalties}</p> </p> 
+              <p className='rentss'> <p>Total Monthly Payments:</p> <p>{items.rent+items.water+items.arrears+items.wifi+items.penalties}</p> </p> 
+              <a  href="https://tinypesa.com/petergachau"><h6>continue to pay via mpesa</h6></a>
+
               </div>
       )
     })}

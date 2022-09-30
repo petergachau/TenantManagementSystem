@@ -8,7 +8,7 @@ const ApartmentA = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/projects/singlea')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/projects/singlea')
           setAdmin(  res.data)
           console.log(admin);
          } catch (error) {

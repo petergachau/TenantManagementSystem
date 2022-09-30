@@ -14,7 +14,7 @@ const Rent = () => {
     useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/project')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/project')
         setUsers(  res.data)
        } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ const Rent = () => {
         useEffect(()=>{
           async function fetchData(){
           try {
-            const res= await axios.get('http://localhost:5000/milestone')
+            const res= await axios.get('https://railway-production-8f49.up.railway.app/milestone')
             setAdmin(  res.data)
             console.log();
            } catch (error) {
@@ -39,7 +39,7 @@ const Rent = () => {
               useEffect(()=>{
                 async function fetchData(){
                 try {
-                  const res= await axios.get('http://localhost:5000/milestone')
+                  const res= await axios.get('https://tenant-app-app.herokuapp.com/milestone')
                   
                   console.log( 'hello',res.data);
                 setCareTaker( res.data)

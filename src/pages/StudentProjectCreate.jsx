@@ -44,10 +44,12 @@ const StudentProjectCreate = () => {
    const handleSubmit= (e)=>{
     
        e.preventDefault()
+      //  e.target.reset();
        if (users){
         const updateddata={...users}
        if(!id){
         dispatch(createProject(updateddata,toast))
+        navigate('/addproject')
        }else{
         dispatch(updateTour({updateddata,id,toast}))
        }
@@ -79,7 +81,7 @@ useEffect(() => {
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/stats/users')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/users')
     setTours(  res.data)
     console.log('hey',tours[0].phone);
    } catch (error) {
@@ -107,7 +109,7 @@ return (
             </Link>
             <Link to='/summarys'>
                 <button className='btn'>
-                 Tenant Total Payments
+                 Tenant total payments
                 </button>
             </Link>
             </div>
@@ -120,25 +122,44 @@ return (
  
 {/* <Projects/> */}
 <div className="rent-split-start">
+<h6 style={{color:'white'}}>Name</h6>
     {/* <input className='form-input' type='text'  placeholder='Apartment eg A or B or C' onChange={(e)=> setUser({...users , apartment:e.target.value})} required/> */}
     <input className='form-input' type='text'  placeholder='Name' onChange={(e)=> setUser({...users , name:e.target.value})} required/>
-    <input className='form-input' type='text' placeholder='House Number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
-    <input className='form-input' type='number' placeholder=' monthly Rent' onChange={(e)=> setUser({...users , amount:e.target.value})} required/>
-    <input className='form-input' type='number' placeholder='Deposit' onChange={(e)=> setUser({...users ,payment:e.target.value})}/>
+    <h6 style={{color:'white'}}>House number</h6>
+    <input className='form-input' type='text' placeholder='House number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
+    <h6 style={{color:'white'}}>Monthly rent</h6>
+    <input className='form-input' type='number' placeholder=' Monthly rent' onChange={(e)=> setUser({...users , amount:e.target.value})} required/>
+    <h6 style={{color:'white'}}>Maintanance</h6>
+    <input className='form-input' type='number' placeholder='Maintanance' onChange={(e)=> setUser({...users ,payment:e.target.value})}/>
+    <h6 style={{color:'white'}}>Arrears</h6>
     {/* <input className='form-input' type='date' placeholder='date' onChange={(e)=> setUser({...users ,createdAt:e.target.value})} required/> */}
-    <input className='form-input' type='number' placeholder='arrears' onChange={(e)=> setUser({...users ,arrears:e.target.value})} />
+    <input className='form-input' type='number' placeholder='Arrears' onChange={(e)=> setUser({...users ,arrears:e.target.value})} />
+    <h6 style={{color:'white'}}>Penalties</h6>
     <input className='form-input' type='number' placeholder='Penalties' onChange={(e)=> setUser({...users ,penalties:e.target.value})} />
-    <input className='form-input' type='number' placeholder='Contract Renewal' onChange={(e)=> setUser({...users ,aptType:e.target.value})}/>
-    <input className='form-input' type='number' placeholder='wifi' onChange={(e)=> setUser({...users ,wifi:e.target.value})} />
+    <h6 style={{color:'white'}}>Contract renewal</h6>
+    <input className='form-input' type='text' placeholder='Contract renewal' onChange={(e)=> setUser({...users ,aptType:e.target.value})}/>
+    <h6 style={{color:'white'}}>Wifi charges</h6>
+    <input className='form-input' type='number' placeholder='Wifi Charges' onChange={(e)=> setUser({...users ,wifi:e.target.value})} />
 
     </div>
     <div className="rent-split">
-    <input className='form-input' type='number' placeholder='tenant Phone Number' onChange={(e)=> setUser({...users ,phone:e.target.value})}/>
-    <input className='form-input' type='number' placeholder='current water read' onChange={(e)=> setUser({...users ,currentRead:e.target.value})}/>
+   
+    <h6 style={{color:'white'}}>Current water read</h6>
+    <input className='form-input' type='number' placeholder='Current water read' onChange={(e)=> setUser({...users ,currentRead:e.target.value})}/>
+    <h6 style={{color:'white'}}>Previous water read</h6>
     <input className='form-input' type='number' placeholder='Previous water read' onChange={(e)=> setUser({...users ,lastRead:e.target.value})}/>
-    <input className='form-input' type='number' placeholder='Water Bill' onChange={(e)=> setUser({...users ,waterFee:e.target.value})}/>
+    
+    <h6 style={{color:'white'}}>Unit consumed</h6>
+    <input className='form-input' type='number' placeholder='Unit consumed' onChange={(e)=> setUser({...users ,idNo:e.target.value})}/>
+    <h6 style={{color:'white'}}>Water bill</h6>
+    <input className='form-input' type='number' placeholder='Water bill' onChange={(e)=> setUser({...users ,waterFee:e.target.value})}/>
+    <h6 style={{color:'white'}}>Tenant phone number</h6>
+    <input className='form-input' type='number' placeholder='Tenant phone number' onChange={(e)=> setUser({...users ,phone:e.target.value})}/>
+    <h6 style={{color:'white'}}>Comments</h6>
     <input className='form-input' type='text' placeholder='Comments' onChange={(e)=> setUser({...users ,apartment:e.target.value})}/>
+    <h6 style={{color:'white'}}>balance</h6>
     <input className='form-input' type='number' placeholder='balance' onChange={(e)=> setUser({...users ,balance:e.target.value})} />
+    <h6 style={{color:'white'}}>date</h6>
     <input className='form-input' type='text' placeholder='date of payment eg 17/04/2022' onChange={(e)=> setUser({...users ,datePaid:e.target.value})}/>
 
 {/* 

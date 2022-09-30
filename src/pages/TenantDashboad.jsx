@@ -41,7 +41,7 @@ if(userId){
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get(`http://localhost:5000/project/userProjects/${userId}`)
+    const res= await axios.get(`https://railway-production-8f49.up.railway.app/project/userProjects/${userId}`)
     
     console.log( 'hello',res.data);
   setClear(  res.data)

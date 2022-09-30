@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { format } from 'timeago.js'
 
 
 function compare(a,b){
@@ -16,9 +17,10 @@ const VacationsA = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/start/vacation/5b')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/start/vacation/5b')
           res.data.sort(compare)
-          setAdmin(  res.data)
+          const result = res.data.filter((_, index) => index < 6);
+          setAdmin(  result)
          
          } catch (error) {
           console.log(error);
@@ -35,6 +37,7 @@ const VacationsA = () => {
     {admin.map((items)=>{
       return(
         <div className='rent-card'>
+              <p>updated at {format(items.createdAt)}</p>
 
               <p className='cardtitles'> <p> Name:   </p> <p>{items.name}</p> </p>
               <p className='cardtitles'> <p>Notice to vacate/Response: </p>   <p>{items.reason}</p> </p>

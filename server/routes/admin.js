@@ -11,6 +11,56 @@ import VacationModal from "../models/vacation.js";
 const router = express.Router();
 
 
+router.get ('/totalexpenses',  async (req,res)=>{
+    const previosMonth=moment()
+    .month(moment().month()-1)
+    .month(moment().month()-2)
+    .set('date',1)
+    .format('YYYY-MM-DD HH:mm:ss');
+    // res.status(200).send(previosMonth)
+    try {
+        const users= await ExpensesModal.aggregate([
+            { $match : {createdAt:{$gte:new Date(previosMonth)} } },
+            {
+                $project:{
+                    month:{$month:'$createdAt'},
+                    total:"$security",
+                    totol2:"$electricityCharges",
+                    total3:"$waterCharges",
+                    total4:"$careTakerSalary",
+                    total5:"$maintananceSalary",
+                    total6:"$wifi",
+                    total7:"$clean",
+                    total8:"$services",
+                }
+            },
+            
+            
+            {
+                $group:{
+                    _id:'$month',
+                    total:{$sum:"$total"},
+                    total2:{$sum:"$totol2"},
+                    total3:{$sum:"$total3"},
+                    total4:{$sum:"$total4"},
+                    total5:{$sum:"$total5"},
+                    total6:{$sum:"$total6"},
+                    total7:{$sum:"$total7"},
+                    total8:{$sum:"$total8"},
+                }
+            }
+            
+            // { $match : { isAdmin : true } },
+            // { $match : { supervisor : true } },
+        ]);
+        res.status(200).send(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+
+ })
+
 router.get ('/allpayments',  async (req,res)=>{
     const previosMonth=moment()
     .month(moment().month()-1)
@@ -293,6 +343,43 @@ router.get ('/totalrenta',  async (req,res)=>{
                 $project:{
                     month:{$month:'$createdAt'},
                     total:{$sum:["$amount","$payment","$waterFee","$arrears","$penalties","$wifi","$balance","$aptType"]}
+                    
+                }
+            },
+            
+            
+            {
+                $group:{
+                    _id:'$month',
+                    count:{$sum:"$total"}
+                    
+                }
+            }
+            
+            // { $match : { isAdmin : true } },
+            // { $match : { supervisor : true } },
+        ]);
+        res.status(200).send(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+
+ })
+ router.get ('/totalwateraa',  async (req,res)=>{
+    const previosMonth=moment()
+    .month(moment().month()-1)
+    .month(moment().month()-2)
+    .set('date',1)
+    .format('YYYY-MM-DD HH:mm:ss');
+    // res.status(200).send(previosMonth)
+    try {
+        const users= await TourModal.aggregate([
+            { $match : {createdAt:{$gte:new Date(previosMonth)} } },
+            {
+                $project:{
+                    month:{$month:'$createdAt'},
+                    total:{$sum:["$amount","$payment","$waterFee","$aptType","$arrears","$wifi","$balance","$penalties"]}
                     
                 }
             },

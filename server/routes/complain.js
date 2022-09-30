@@ -22,7 +22,7 @@ router.post("/relatedTours", getRelatedTours);
 router.get("/", getTours);
 router.get("/:id", getTour);
 
-router.get("/search:key", async (req,res)=>{
+router.get("/searchs:key", async (req,res)=>{
   let result=await ComplainModal.find({
     "$or":[
       {
@@ -33,6 +33,7 @@ router.get("/search:key", async (req,res)=>{
   })
   res.send(result)
 });
+
 
 
 router.post("/", auth, createTour);

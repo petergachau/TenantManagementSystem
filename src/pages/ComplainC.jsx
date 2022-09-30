@@ -7,7 +7,7 @@ const ComplainC = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/projects/complainc')
+          const res= await axios.get('https://tenant-app-app.herokuapp.com/stats/projects/complainc')
           setAdmin(  res.data)
           console.log(admin);
          } catch (error) {

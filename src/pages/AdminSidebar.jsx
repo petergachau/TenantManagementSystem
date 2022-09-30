@@ -6,6 +6,7 @@ import moment from 'moment';
 import { format } from 'timeago.js';
 import { useDispatch, useSelector } from "react-redux";
 import * as timeago from 'timeago.js';
+import { useEffect } from 'react';
 
 
 const columns = [
@@ -19,6 +20,12 @@ const columns = [
 {security:'Total Operational Cost'},
   
 ];
+const column = [
+  {a:'G1'},
+  {b:'G1'},
+  {c:'G4'},
+    
+  ]
 
 
 const AdminSidebar = () =>{
@@ -30,8 +37,9 @@ const [date,setDate]=useState([])
 const [totalwater,setTotalWater]=useState([])
 const [users,setTotalWaters]=useState([])
 const[products,setproducts]=useState([])
+const [admin,setAdmin]=useState([]);
 const { user } = useSelector((state) => ({ ...state.auth }));
-const X=19
+console.log( 'hello',user);
 function compare(a,b){
   if(a._id <b._id){
     return 1
@@ -41,10 +49,27 @@ function compare(a,b){
   }return 0
 }
 
+useEffect(()=>{
+  async function fetchData(){
+  try {
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/usercrud/allusers')
+    res.data.sort(compare)
+    setAdmin(res.data)
+    console.log('adminfff',admin.length);
+   } catch (error) {
+    console.log(error);
+    
+  }
+  }
+  fetchData()
+    },[])
+
+
+
 React.useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/project')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/project')
     
     setproducts(  res.data)
     console.log('new data',products.data?.totalTours);
@@ -58,7 +83,7 @@ React.useEffect(()=>{
 React.useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/stats/totalrentb');
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalrentb');
     res.data.sort(compare)
     setDate(  res.data)
       
@@ -76,9 +101,9 @@ React.useEffect(()=>{
   React.useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/chartss');
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/chartss');
       res.data.sort(compare)
-      const result = res.data.filter((_, index) => index < 21);
+      const result = res.data.filter((_, index) => index < 20);
                   console.log('result',result);
 
       setTours(  result)
@@ -98,7 +123,7 @@ React.useEffect(()=>{
   React.useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/totalrentb')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalrentb')
       res.data.sort(compare)
       setTotal(  res.data)
      
@@ -115,7 +140,7 @@ React.useEffect(()=>{
       React.useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/totalwifi')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalwifi')
           setTotalWifi(  res.data)
           
           ;
@@ -132,7 +157,7 @@ React.useEffect(()=>{
           React.useEffect(()=>{
             async function fetchData(){
             try {
-              const res= await axios.get('http://localhost:5000/stats/totalwater')
+              const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalwater')
               res.data.sort(compare)
               setTotalWater(  res.data)
               
@@ -148,9 +173,9 @@ React.useEffect(()=>{
               React.useEffect(()=>{
                 async function fetchData(){
                 try {
-                  const res= await axios.get('http://localhost:5000/expenses')
+                  const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/totalexpenses')
                   res.data.sort(compare)
-                  const result = res.data.filter((_, index) => index <= 1);
+                  const result = res.data.filter((_, index) => index <= 19);
                   console.log('result',result);
                   setExpenses(  result)
                   
@@ -207,8 +232,9 @@ React.useEffect(()=>{
      {rows.map((i)=>{
       return(
         <>
-    month of {i.digits}
-        
+    <h3 className='month'>month of {moment().format('MM YYYY ')}</h3>
+
+       
 {/* 
 // {tours.length} */}
 
@@ -216,7 +242,7 @@ React.useEffect(()=>{
 {/* {tours[0].createdAt} */}
 {/* {currentMonth1===totalwifi[0]._id?( */}
 
-{i.digits===currentMonth1?(
+{/* {i.digits===currentMonth1?( */}
   <table>
 
 <thead>
@@ -243,7 +269,7 @@ React.useEffect(()=>{
 
     return(
       <>
-       
+       {admin.length-2<=19?(
 
       <tr>
         <td>{format(item.createdAt)}</td>
@@ -254,17 +280,18 @@ React.useEffect(()=>{
     <td>{item.houseNo}</td> 
 
    {!item.balance? <td>{item.name}</td>: <td className='color2'>{item.name}</td>}
+   
     <td>{item.amount}</td>
     <td>{item.wifi}</td>
     <td>{item.waterFee}</td>
     <td>{item.arrears}</td>
     <td>{item.penalties}</td>
     <td>{item.balance}</td>
-    <td>{item.aptType}</td>
+    <td>{item.ptType}</td>
     <td>{item.apartment}</td>
   </tr> 
 
-
+       ):null}
   </>
     )
   
@@ -277,7 +304,8 @@ React.useEffect(()=>{
   return(
 
   <>
-  
+  {item._id===i.digits?(
+    <>
   <thead>
   <tr>
 
@@ -288,51 +316,53 @@ React.useEffect(()=>{
   <tbody>
 <tr>
    <td>Security Charges</td>
-   <td>{item.security}</td>
+   <td>{item.total}</td>
   </tr>
 </tbody>
 <tbody>
 <tr>
    <td>Electricity charges</td>
-   <td>{item.electricityCharges}</td>
+   <td>{item.total2}</td>
   </tr>
 </tbody>
 <tbody>
 <tr>
    <td>Cleaning materials</td>
-   <td>{item.clean}</td>
+   <td>{item.total7}</td>
   </tr>
 </tbody>
 <tbody>
 <tr>
    <td>Water Charges</td>
-   <td>{item.waterCharges}</td>
+   <td>{item.total3}</td>
   </tr>
 </tbody>
 <tbody>
 <tr>
    <td>Caretaker Salary</td>
-   <td>{item.careTakerSalary}</td>
+   <td>{item.total4}</td>
   </tr>
 </tbody>
 
 <tbody>
 <tr>
    <td>Maintenance charges</td>
-   <td>{item.maintananceSalary}</td>
+   <td>{item.total5}</td>
   </tr>
 </tbody><tbody>
 <tr>
    <td>Broadband(wifi)</td>
-   <td>{item.wifi}</td>
+   <td>{item.total6}</td>
   </tr>
 </tbody><tbody>
 <tr>
    <td>Total Operational Cost'</td>
-   <td>{item.security+item.electricityCharges+item.waterCharges+item.clean
-   +item.careTakerSalary+item.maintananceSalary+item.wifi}</td>
+   <td>{item.total+item.total2+item.total3+item.total4
+   +item.total5+item.total6+item.total7}</td>
   </tr>
 </tbody>
+</>)
+:null}
 </>)
 })} 
 
@@ -379,7 +409,7 @@ React.useEffect(()=>{
      <td>{item.total5}</td>
     </tr>
   </tbody>
-  <tbody>
+  {/* <tbody>
   <tr>
      <td>Contract Renewal</td>
      <td>{item.total6}</td>
@@ -390,7 +420,7 @@ React.useEffect(()=>{
      <td>Deposit</td>
      <td>{item.total7}</td>
     </tr>
-  </tbody>
+  </tbody> */}
   <tbody>
   <tr>
      <td>Balances</td>
@@ -407,18 +437,23 @@ React.useEffect(()=>{
     <thead>
       <tr>
         <td>Monthly Revenue</td>
-        {totalwater.map((i)=>{
+
+        
+        {totalwater.map((items)=>{
           return(
             
             
               <div>
-                
+                {items._id===i.digits?(
+              <>
                   <div>
-                    <th>{(item.total3+item.total+item.total2+item.total4+item.total5+item.total6+item.total7+item.total8)-(i.count)}</th> 
+                    <th>{item.total3+item.total+item.total2+item.total4+item.total5+item.total6+item.total7+item.total8-items.count}</th> 
                   </div>
                
-               
+               </>)
+               :null}
             </div>
+
              )
         })}
         
@@ -436,7 +471,7 @@ React.useEffect(()=>{
 
   
 </table>
-):null}
+{/* ):null} */}
   
   
 {/* ):'rrr'} */}

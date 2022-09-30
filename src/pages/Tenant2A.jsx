@@ -25,9 +25,10 @@ const TenantA = () => {
     React.useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/stats/totalrentb');
+        const res= await axios.get('https://tenant-app-app.herokuapp.com/stats/totalrentb');
         res.data.sort(compare)
-        setDate(  res.data)
+        const result = res.data.filter((_, index) => index < 6);
+          setAdmin(  result)
           
         
        
@@ -47,7 +48,7 @@ const TenantA = () => {
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/2a')
+          const res= await axios.get('https://tenant-app-app.herokuapp.com/stats/2a')
           res.data.sort(compare)
           setAdmin(  res.data)
           console.log('admin',admin[0].name);

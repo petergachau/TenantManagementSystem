@@ -21,7 +21,7 @@ const Responses = () => {
   useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/complain')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/complain')
         res.data.sort(compare)
         setAdmin(  res.data)
        } catch (error) {
@@ -56,10 +56,10 @@ const Responses = () => {
         <div className='rent-card'>
 
 <p>updated at {format(items.createdAt)}</p>
-              <p>Name: {items.name}</p>
+              <p className='rentss'><p>Name:</p> <p>{items.name}</p>  </p>
               
-              <p> houseNo: {items.houseNo}</p>
-              <p>complain/compliment: {items.complain}</p>
+              <p className='rentss'> <p>House number:</p> <p>{items.houseNo}</p> </p>
+              <p className='rentss'> <p>Complain/compliment:</p> <p>{items.complain}</p> </p>
               
               <button className="btn" onClick={() => handleDelete(items._id)}>
                 delete

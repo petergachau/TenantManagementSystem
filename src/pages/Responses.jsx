@@ -20,7 +20,7 @@ const Responses = () => {
   useEffect(()=>{
       async function fetchData(){
       try {
-        const res= await axios.get('http://localhost:5000/tenant')
+        const res= await axios.get('https://railway-production-8f49.up.railway.app/tenant')
         res.data.sort(compare)
         setAdmin(  res.data)
         console.log(admin);
@@ -35,7 +35,7 @@ const Responses = () => {
         React.useEffect(()=>{
           async function fetchData(){
           try {
-            const res= await axios.get('http://localhost:5000/stats/totalrentb');
+            const res= await axios.get('https://tenant-app-app.herokuapp.com/stats/totalrentb');
             res.data.sort(compare)
             
             setTotalWater(res.data)
@@ -87,12 +87,12 @@ const Responses = () => {
     {admin.map((items)=>{
       return(
         <div className='rent-card'>
-
+<p>{format(items.createdAt)}</p>
 
 <p>Name: {items.name}</p>
               
-              <p> houseNo: {items.houseNo}</p>
- payment confirmation screenshot
+              <p> House number: {items.houseNo}</p>
+ Payment confirmation screenshot
               <img src={items.imageFile1} alt="" className="img" />
 {/*               
               Water screenshot

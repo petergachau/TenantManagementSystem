@@ -16,7 +16,7 @@ const CaretakeMainPage = () => {
   useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get(`http://localhost:5000/milestone/miles/${userId}`)
+      const res= await axios.get(`https://railway-production-8f49.up.railway.app/milestone/miles/${userId}`)
       
      
     setUsers(  res.data)

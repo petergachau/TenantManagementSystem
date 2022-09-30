@@ -37,6 +37,7 @@ const StudentProjectCreate = () => {
     prevReads:'',
     services:'',
    units:'',
+   others:''
                })
    const handleSubmit= (e)=>{
     
@@ -76,7 +77,7 @@ useEffect(() => {
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/stats/users')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/users')
     setTours(  res.data)
     console.log('hey',tours[0].phone);
    } catch (error) {
@@ -105,16 +106,25 @@ return (
  
 {/* <Projects/> */}
 <div className="rent-split-start">
+<h6 style={{color:'white'}}>security fee</h6>
     <input className='form-input' type='number'  placeholder='Security fee' onChange={(e)=> setUser({...users , security:e.target.value})} required/>
+    <h6 style={{color:'white'}}>electricity charges</h6>
     <input className='form-input' type='number'  placeholder='electricity Charges' onChange={(e)=> setUser({...users , electricityCharges:e.target.value})} required/>
+    <h6 style={{color:'white'}}>water charges</h6>
     <input className='form-input' type='number' placeholder='water charges' onChange={(e)=> setUser({...users , waterCharges:e.target.value})} required/>
+    <h6 style={{color:'white'}}>caretaker salary</h6>
     <input className='form-input' type='number' placeholder=' caretaker salary' onChange={(e)=> setUser({...users ,careTakerSalary:e.target.value})}/>
     
     </div>
     <div className="rent-split">
+    <h6 style={{color:'white'}}>maintance charges</h6>
      <input className='form-input' type='number' placeholder=' maintanance Charges' onChange={(e)=> setUser({...users ,maintananceSalary:e.target.value})} required/>
+     <h6 style={{color:'white'}}>wifi bill</h6>
     <input className='form-input' type='number' placeholder='wifi bill' onChange={(e)=> setUser({...users ,wifi:e.target.value})} required/>
+    <h6 style={{color:'white'}}>cleaning materials</h6>
     <input className='form-input' type='number' placeholder='cleaning materials' onChange={(e)=> setUser({...users ,clean:e.target.value})} required/>
+    <h6 style={{color:'white'}}>other charges</h6>
+    <input className='form-input' type='number' placeholder='others charges' onChange={(e)=> setUser({...users ,other:e.target.value})} required/>
 
 
    </div>

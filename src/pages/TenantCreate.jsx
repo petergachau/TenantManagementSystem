@@ -84,7 +84,7 @@ useEffect(() => {
 useEffect(()=>{
   async function fetchData(){
   try {
-    const res= await axios.get('http://localhost:5000/stats/users')
+    const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/users')
     setTours(  res.data)
     console.log('hey',tours[0].phone);
    } catch (error) {
@@ -111,13 +111,16 @@ return (
   </div>
   <StyledForm id='cancelCourse' onSubmit={handleSubmit} style={{marginTop:'6rem'}} className='form'>
   
-  <h2 style={{color:'whitesmoke'}}>{id? 'update your values':' Rent/water bill / wifi fee '}</h2>
+  <h2 style={{color:'whitesmoke'}}>{id? 'update your values':' Payment Screenshot '}</h2>
     <div className="main-rent-create">
  
 {/* <Projects/> */}
 <div className="rent-split-start">
+<h6 style={{color:'white'}}>Name</h6> 
+
     {/* <input className='form-input' type='text'  placeholder='Apartment eg A or B or C' onChange={(e)=> setUser({...users , apartment:e.target.value})} required/> */}
     <input className='form-input' type='text'  placeholder='Name' onChange={(e)=> setUser({...users , name:e.target.value})} required/>
+    <h6 style={{color:'white'}}>House Number</h6>
     <input className='form-input' type='text' placeholder='House Number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
    
       <h5 className='screenshot'> payment confirmation screenshot</h5>

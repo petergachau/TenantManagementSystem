@@ -18,15 +18,12 @@ export const createTour = async (req, res) => {
 };
 
 export const getTours = async (req, res) => {
-  const { page } = req.query;
+ 
   try {
     // const tours = await TourModal.find();
     // res.status(200).json(tours);
 
-    const limit = 6;
-    const startIndex = (Number(page) - 1) * limit;
-    const total = await TourModal.countDocuments({});
-    const tours = await TourModal.find().limit(limit).skip(startIndex);
+    const tours = await TourModal.find();
     res.status(201).json(tours);
 
   } catch (error) {

@@ -9,7 +9,7 @@ const PDF = (props) => {
   useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/projects/single')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/projects/single')
       setAdmin(  res.data)
       console.log(admin);
      } catch (error) {

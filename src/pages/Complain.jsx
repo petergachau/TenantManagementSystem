@@ -32,6 +32,7 @@ const StudentProjectCreate = () => {
    const handleSubmit= (e)=>{
     
        e.preventDefault()
+       e.target.reset()
        if (users){
         const updateddata={...users, name:user?.result.name}
        
@@ -121,13 +122,21 @@ return (
   <h2 style={{color:'whitesmoke'}}>Add A Compliment / Complain</h2>
     <div className="main-rent-create">
   <div className="rent-split-start">
+  <h6 style={{color:'white'}}>name</h6>
+
     {/* <input className='form-input' type='text'  placeholder='Apartment Name' onChange={(e)=> setUser({...users , apartment:e.target.value})} required/> */}
     <input className='form-input' type='text'  placeholder='Name' onChange={(e)=> setUser({...users , name:e.target.value})} required/>
+    <h6 style={{color:'white'}}>house number</h6>
+
     <input className='form-input' type='text' placeholder='House Number' onChange={(e)=> setUser({...users , houseNo:e.target.value})} required/>
     </div>
     <div className="rent-split">
+    <h6 style={{color:'white'}}>date </h6> 
+
     {/* <input className='form-input' type='number' placeholder='Id Number' onChange={(e)=> setUser({...users ,idNo:e.target.value})} required/> */}
     <input className='form-input' type='date' placeholder='date' onChange={(e)=> setUser({...users ,createdAt:e.target.value})} required/>
+    <h6 style={{color:'white'}}>complain/compliment</h6>
+
       <input className='form-input' type='text' placeholder='Complain/Compliment' onChange={(e)=> setUser({...users ,complain:e.target.value})}/>
       {/* <div className="d-flex justify-content-start">
               <FileBase

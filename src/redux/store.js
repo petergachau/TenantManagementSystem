@@ -11,6 +11,7 @@ import caretakercomplainReducer from "./features/Caretakercomment";
 import expenseReducer from './features/expenses'
 import userReducer from './features/userCrudSlice'
 import summaryReducer from './features/summarySlice'
+import messageReducer from "./features/messageSlice";
 
 export default configureStore({
   reducer: {
@@ -26,5 +27,6 @@ export default configureStore({
     caretakervacation:caraetakervacationReducer,
     user:userReducer,
     summary:summaryReducer,
+    message:messageReducer,
   },
 });

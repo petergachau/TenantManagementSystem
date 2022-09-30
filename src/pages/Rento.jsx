@@ -22,7 +22,7 @@ function compare(a,b){
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/rent', setHeaders())
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/rent', setHeaders())
           res.data.sort(compare)
           console.log(res.data[0]._id);
           

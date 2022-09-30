@@ -18,7 +18,7 @@ const AdminTotalRent = () => {
 useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/complains')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/complains')
       res.data.sort(compare)
       setTours(  res.data)
       console.log('hey',tours);
@@ -37,7 +37,7 @@ useEffect(()=>{
         event.preventDefault()
         let key =event.target.value
         if(key){
-         let result= await fetch(`http://localhost:5000/project/search${key}`)
+         let result= await fetch(`https://railway-production-8f49.up.railway.app/project/search${key}`)
       result=await result.json()
       if(result){
         setTours(result)
@@ -52,7 +52,7 @@ useEffect(()=>{
 
   return (
     <>
-      <h4 className='r' styles={{color:'white'}}>Complains</h4>
+      <h4 className='r' styles={{color:'white'}}>Complains/Compliments</h4>
       <div className='search'>      
       <input type="text" placeholder='Search by house number' onChange={handleSearch} />
 </div>    <div className='tenant-admin-page'>
@@ -65,8 +65,8 @@ useEffect(()=>{
 
               <p>Name: {item.name}</p>
              <p> HouseNo: {item.houseNo}</p> 
-             <p> Complain: {item.complain}</p> 
-             <p> Notice Date: {item.remTime}</p> 
+             <p> Complain/Compliment: {item.complain}</p> 
+              
              <div className="buttons">
               {/* <button className="btn">delete</button>
               <button className="btn">view</button> */}

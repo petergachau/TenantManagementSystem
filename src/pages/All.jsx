@@ -1,8 +1,13 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 const All = () => {
+  const[count,setCount]=useState(0)
   return (
-    <div>All</div>
+    <div>
+{count}
+<button onClick={(e)=> setCount(count+1)}>
+  add
+</button>
+    </div>
   )
 }
 

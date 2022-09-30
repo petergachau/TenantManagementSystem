@@ -30,7 +30,7 @@ const handleSearch= async (event)=>{
   event.preventDefault()
   let key =event.target.value
   if(key){
-   let result= await fetch(`http://localhost:5000/project/search${key}`)
+   let result= await fetch(`https://railway-production-8f49.up.railway.app/project/search${key}`)
 result=await result.json()
 if(result){
   setTours(result)
@@ -48,7 +48,7 @@ if(result){
 useEffect(()=>{
     async function fetchData(){
     try {
-      const res= await axios.get('http://localhost:5000/stats/chartss')
+      const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/chartss')
       setTours(  res.data)
       console.log('hey',tours);
      } catch (error) {

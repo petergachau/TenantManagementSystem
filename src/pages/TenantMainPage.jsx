@@ -29,7 +29,7 @@ const [date,setDate]=useState([])
     useEffect(()=>{
         async function fetchData(){
         try {
-          const res= await axios.get('http://localhost:5000/stats/userdates')
+          const res= await axios.get('https://railway-production-8f49.up.railway.app/stats/userdates')
           res.data.sort(compare)
           setDate( res.data)
           
