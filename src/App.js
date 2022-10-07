@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import "./App.css";
 import MileProjects from './pages/MileProjects'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -159,15 +159,17 @@ import AdminMessage from "./pages/AdminMesssage";
 function App() {
   
   const dispatch = useDispatch();
+  const[data,setDate]=useState([])
   const user = JSON.parse(localStorage.getItem("profile"));
   useEffect(() => {
     dispatch(setUser(user));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
     <BrowserRouter>
-    
+      
     <ToastContainer/>
     {/* <Topbar/> */}
     <Header />

@@ -40,11 +40,13 @@ const StudentProjectCreate = () => {
     phone:'',
     aptType:'',
     penalties:'',
+    deposit:'',
+    cf:''
                })
    const handleSubmit= (e)=>{
     
        e.preventDefault()
-      //  e.target.reset();
+       e.target.reset();
        if (users){
         const updateddata={...users}
        if(!id){
@@ -140,7 +142,8 @@ return (
     <input className='form-input' type='text' placeholder='Contract renewal' onChange={(e)=> setUser({...users ,aptType:e.target.value})}/>
     <h6 style={{color:'white'}}>Wifi charges</h6>
     <input className='form-input' type='number' placeholder='Wifi Charges' onChange={(e)=> setUser({...users ,wifi:e.target.value})} />
-
+    <h6 style={{color:'white'}}>Deposit </h6>
+    <input className='form-input' type='number' placeholder='Deposits' onChange={(e)=> setUser({...users ,deposit:e.target.value})} />
     </div>
     <div className="rent-split">
    
@@ -153,6 +156,8 @@ return (
     <input className='form-input' type='number' placeholder='Unit consumed' onChange={(e)=> setUser({...users ,idNo:e.target.value})}/>
     <h6 style={{color:'white'}}>Water bill</h6>
     <input className='form-input' type='number' placeholder='Water bill' onChange={(e)=> setUser({...users ,waterFee:e.target.value})}/>
+    <h6 style={{color:'white'}}>c/f </h6>
+    <input className='form-input' type='number' placeholder='c/f' onChange={(e)=> setUser({...users ,cf:e.target.value})} />
     <h6 style={{color:'white'}}>Tenant phone number</h6>
     <input className='form-input' type='number' placeholder='Tenant phone number' onChange={(e)=> setUser({...users ,phone:e.target.value})}/>
     <h6 style={{color:'white'}}>Comments</h6>

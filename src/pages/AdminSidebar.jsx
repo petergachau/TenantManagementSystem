@@ -256,6 +256,8 @@ React.useEffect(()=>{
 <th>Arrears</th>
 <th>Penalty</th>
 <th>Balance</th>
+<th>Deposit</th>
+<th>C/F</th>
 <th>Contract Renewal</th>
 <th>Comments</th>
 
@@ -287,6 +289,8 @@ React.useEffect(()=>{
     <td>{item.arrears}</td>
     <td>{item.penalties}</td>
     <td>{item.balance}</td>
+    <td>{item.deposit}</td>
+    <td>{item.cf}</td>
     <td>{item.ptType}</td>
     <td>{item.apartment}</td>
   </tr> 
@@ -414,13 +418,13 @@ React.useEffect(()=>{
      <td>Contract Renewal</td>
      <td>{item.total6}</td>
     </tr>
-  </tbody>
+  </tbody>*/}
   <tbody>
   <tr>
      <td>Deposit</td>
-     <td>{item.total7}</td>
+     <td>{item.total6}</td>
     </tr>
-  </tbody> */}
+  </tbody> 
   <tbody>
   <tr>
      <td>Balances</td>
@@ -429,7 +433,7 @@ React.useEffect(()=>{
   </tbody>
   <tbody>
   <tr>
-     <td>Total Repayments</td>
+     <td>Total Payments</td>
    <th>{item.total3+item.total+item.total2+item.total4+item.total5+item.total6+item.total7+item.total8}</th> 
     </tr>
   
